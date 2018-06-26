@@ -9,7 +9,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToasterModule} from 'angular2-toaster';
 
 import { AppComponent } from './root/app.component';
-import { TransportComponent } from './transport/transport.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthEffects } from './root/shared/store/auth-effects';
@@ -21,7 +20,7 @@ import { ApiService } from './root/shared/api/api.service';
 
 const routes = [
   { path: '', redirectTo: 'transport', pathMatch: 'full' },
-  { path: 'transport', component: TransportComponent, canActivate: [AuthGuard] },
+  { path: 'transport', loadChildren: 'src/app/transport/transport.module#TransportModule', canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -43,7 +42,6 @@ const routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    TransportComponent,
     PageNotFoundComponent
   ],
   providers: [

@@ -12,27 +12,27 @@ var request = require('request');
 app.use(cors());
 
 var example = {
-  recipes: require(sample + 'recipes.json')
+  transport: require(sample + 'transport.json')
 };
 
-app.get('/api/recipes', function (req, res) {
+app.get('/api/transport', function (req, res) {
   setTimeout( function() {
     res.setHeader('Content-Type', 'application/json');
-    res.send(example.recipes);
+    res.send(example.transport);
   }, 0);
 });
 
 app.put('/api/sign', function (req, res) {
   setTimeout( function() {
     res.setHeader('Content-Type', 'application/json');
-    res.send({token: 'MALIN'});
+    res.send({token: 'TOKEN'});
   }, 0);
 });
 
 app.post('/api/sign', function (req, res) {
   setTimeout( function() {
     res.setHeader('Content-Type', 'application/json');
-    res.send({token: 'MALIN'});
+    res.send({token: 'TOKEN'});
   }, 0);
 });
 

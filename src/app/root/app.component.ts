@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './shared/auth/auth.service';
 import { ApiService } from './shared/api/api.service';
 
@@ -7,9 +7,18 @@ import { ApiService } from './shared/api/api.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  loading: Boolean = false;
 
-  constructor(public authService: AuthService, public apiService: ApiService) {}
+  constructor(public authService: AuthService, private apiService: ApiService) {}
+
+  ngOnInit() {
+    this.apiService.loading$.subscribe((data: any) => {
+      setTimeout(() => {
+        this.loading = data;
+      })
+    });
+  }
 
   onLogout() {
     this.authService.logout();
