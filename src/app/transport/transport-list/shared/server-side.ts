@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder } from "@angular/forms";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 import { Search } from "../../shared/store/transport-store";
+import { HttpParams } from "@angular/common/http";
 
 export class ServerSide extends BaseTable {
 
@@ -46,15 +47,22 @@ export class ServerSide extends BaseTable {
   }
 
   private send() {
-    const page = `?page=${this.table.offset}&per_page=${this.table.pageSize}`;
-    const sorts = this.table.sorts && this.table.sorts[0] || null;
-    const sort = sorts ? '&order_type=' + sorts.dir + '&order_field=' + sorts.prop : '';
-    const filters = this.searchForm.value;
-    const filter = Object.keys(filters).reduce((accu, it) => { 
-        accu += filters[it] ? `&${it}=${filters[it]}` : ''; 
-        return accu
-    }, '');
-    console.log(page + sort + filter);
-    this.stor.dispatch(new Search(page + sort + filter));
+    let params = new HttpParams();
+    params = params.append('page', this.table.offset.toString());
+    params = params.append('per_page', this.table.pageSize.toString());
+    
+    const sort = this.table.sorts && this.table.sorts[0] || null;
+    if(sort) {
+      params = params.append('order_type', sort.dir);
+      params = params.append('order_field', sort.prop);
+    }
+
+    const filter = this.searchForm.value;
+    for(let prop in filter) {
+      if(filter[prop]) {
+        params = params.append(prop, filter[prop]);
+      }
+    };
+    this.stor.dispatch(new Search({params: params}));
   }
 }

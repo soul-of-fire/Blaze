@@ -16,9 +16,14 @@ var example = {
 };
 
 app.get('/api/transport', function (req, res) {
+  var page = req.param('page');
   setTimeout( function() {
     res.setHeader('Content-Type', 'application/json');
-    res.send(example.transport);
+    if(page == '1') {
+      res.send([example.transport[2]]);
+    }else{
+      res.send(example.transport);
+    }
   }, 0);
 });
 

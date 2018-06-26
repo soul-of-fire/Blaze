@@ -24,7 +24,7 @@ export class TransportEffects {
 
   @Effect() search$: Observable<Action> = this.actions$.pipe(
     ofType(SEARCH),
-    switchMap((action: any) => this.apiService.get('/transport' + action.payload).pipe(
+    switchMap((action: any) => this.apiService.get('/transport', action.payload).pipe(
         map((data: any) => {
           return new Loaded(data);
         })
