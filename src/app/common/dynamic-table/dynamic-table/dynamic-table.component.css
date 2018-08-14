@@ -1,0 +1,21 @@
+input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid lightgray;
+}
+
+ngx-datatable {
+  border: 1px solid grey;
+}
+
+span.ng-star-inserted {
+  cursor: pointer;
+}
+
+/* span.sort-btn {
+  position: absolute;
+  top: 17px;
+  left: 0px;
+} */

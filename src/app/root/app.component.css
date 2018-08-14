@@ -1,0 +1,7 @@
+.navbar-text > a {
+    cursor: pointer;
+}
+
+.lang {
+    padding-right: 8px;
+}

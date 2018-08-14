@@ -17,16 +17,16 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.authForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
   }
 
-  get email() { return this.authForm.get('email'); }
+  get username() { return this.authForm.get('username'); }
   get password() { return this.authForm.get('password'); }
 
   onSubmit() {
-    this.store.dispatch(new LogIn(new User(this.email.value, this.password.value)));
+    this.store.dispatch(new LogIn(new User(this.username.value, this.password.value)));
   }
 
 }

@@ -14,7 +14,7 @@ export class Logged extends CommonAction<UserInfo> {
   type = LOGGED;
 }
 
-export function authReducer(auth: UserInfo = new UserInfo(''), action: CommonAction<UserInfo>) {
+export function authReducer(auth: UserInfo = new UserInfo('', ''), action: CommonAction<UserInfo>) {
   switch (action.type) {
     case LOGGED:
       return action.payload;

@@ -1,0 +1,14 @@
+<div class="card bg-light">
+  <div class="card-header">
+      Supplier {{label}}
+  </div>
+  <div class="card-body">
+    <section class="card-text">
+      <form [formGroup]="formGroup">
+        <dynamic-ng-bootstrap-form [group]="formGroup" [model]="formModel" [layout]="formLayout"></dynamic-ng-bootstrap-form>
+      </form>
+      <button (click)="submit()" *ngIf="isSubmit" class="btn btn-dark m-1">Submit</button>
+      <button (click)="cancel()" class="btn btn-dark m-1">Cancel</button>
+    </section>
+  </div>
+</div>

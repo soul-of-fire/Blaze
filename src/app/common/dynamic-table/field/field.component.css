@@ -1,0 +1,16 @@
+:host >>> .form-group {
+    margin-bottom: 0 !important;
+}
+
+/* :host >>> .ngx-datatable.bootstrap .datatable-header .datatable-header-cell {
+    vertical-align: bottom;
+    padding: 0.25rem !important;
+    border-bottom: 1px solid #d1d4d7;
+}
+
+:host >>> span.sort-btn {
+    position: relative;
+    top: -63px;
+    left: 125px;
+    height: 0;
+} */

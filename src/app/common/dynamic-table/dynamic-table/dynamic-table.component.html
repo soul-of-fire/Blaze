@@ -1,0 +1,42 @@
+<div [formGroup]="searchForm" *ngIf="columns">
+  <ngx-datatable class="bootstrap" #table
+    [rows]="rows"
+    [columns]="columns"
+    [columnMode]="'force'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="'auto'"
+    [selectionType]="'single'"
+    (select)='select($event)'
+    [limit]="page.pageSize"
+    [count]="page.total"
+    [offset]="page.offset"
+    [externalPaging]="true"
+    (page)='onPage($event)'
+    [externalSorting]="true"
+    (sort)="onSort($event)">
+    <ngx-datatable-column *ngFor="let col of columns" [name]="col.name" [sortable]="true" [canAutoResize]="true">
+        <ng-template ngx-datatable-header-template let-sort="sortFn" let-value="value">
+          <div (click)="!col.isPerse && sort()">{{col.name | capitalizeFirst}}</div>
+          <app-field [col]="col" [formGroup]="searchForm" *ngIf="!col.isPerse"></app-field>
+        </ng-template>
+        <ng-template ngx-datatable-cell-template let-value="value">
+          <ng-template *ngIf="col.isPerse"
+            [ngTemplateOutlet]="parse" 
+            [ngTemplateOutletContext]="{value: value, col: col}">
+          </ng-template>
+          <span *ngIf="!col.isPerse">{{value}}</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Actions" [sortable]="false">
+      <ng-template ngx-datatable-cell-template let-row="row">
+        <button md-icon-button class="mr-1" (click)="edit($event, row)">
+          <i class="fa fa-pencil"></i>
+        </button>
+        <button md-icon-button (rbConfirm)="remove(row)">
+          <i class="fa fa-trash"></i>
+        </button>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import * as shajs from 'sha.js';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { ApiService } from '../api/api.service';
 import { UserInfo } from '../models/user-info';
 import { CommonAction } from '../store/common-action';
 import { User } from '../models/user';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
@@ -16,9 +16,8 @@ export class AuthService {
     this.loginListener();
   }
 
-  public logIn(userAction: CommonAction<User>): Observable<any> {
-    this.hashPassword(userAction.payload);
-    return this.api.post('/sign', userAction.payload);
+  public logIn(userAction: CommonAction<User>): any {
+    return this.api.post('/admin/auth/signin', userAction.payload);
   }
 
   public logout(): void {
@@ -29,7 +28,7 @@ export class AuthService {
   public setAuth(userInfo: UserInfo) {
     this.user$.next(userInfo);
     localStorage.setItem('auth', JSON.stringify(userInfo));
-    this.router.navigate(['transport']);
+    this.router.navigate(['supplier']);
   }
 
   private loginListener(): void {
@@ -40,11 +39,31 @@ export class AuthService {
         this.router.navigate(['login']);
       }else{
         this.isLogged = true;
+        // this.refreshOnExpire(user);
       }
     });
   }
-
-  private hashPassword(payload: User): void {
-    payload.password = shajs('sha256').update(payload.password).digest('hex');
+  
+  private refreshOnExpire(userInfo: UserInfo) {
+    const now = new Date().getTime();
+    const authExpire = userInfo.expAuthorization - now; // 10000
+    const refExpire = userInfo.expRefresh - now; // 29000
+    setTimeout(() => {
+      if(this.isLogged) {
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type':  'application/json',
+            'Authorization': userInfo.token,
+            'Refresh': userInfo.refresh
+          })
+        };
+        this.api.post('/admin/auth/refresh-access-token', null, httpOptions).subscribe();
+      }
+    }, authExpire);
+    setTimeout(() => {
+      if(this.isLogged) {
+        this.logout();
+      }
+    }, refExpire);
   }
 }

@@ -1,18 +1,15 @@
 <form [formGroup]="authForm" novalidate class="border rounded p-3 mx-auto bg-light">
   <div class="form-group">
-    <label for="email">Email address</label>
-    <input type="email" class="form-control" id="email" placeholder="Enter email" formControlName="email">
-    <div *ngIf="email.invalid && (email.dirty || email.touched)">
-      <div class="form-error form-text" *ngIf="email.errors.required"> 
-        Email is required.
-      </div>
-      <div class="form-error form-text" *ngIf="email.errors.email"> 
-        Please provide valid email.
+    <label for="username">{{'login.user' | translate}}</label>
+    <input type="text" class="form-control" id="username" placeholder="Enter user" formControlName="username">
+    <div *ngIf="username.invalid && (username.dirty || username.touched)">
+      <div class="form-error form-text" *ngIf="username.errors.required"> 
+        User is required.
       </div>
     </div>
   </div>
   <div class="form-group">
-    <label for="password">Password</label>
+    <label for="password">{{'login.password' | translate}}</label>
     <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
     <div *ngIf="password.invalid && (password.dirty || password.touched)">
       <div class="form-error form-text" *ngIf="password.errors.required"> 
@@ -20,5 +17,7 @@
       </div>
     </div>
   </div>
-  <button type="submit" class="btn btn-dark" [disabled]="!authForm.valid" (click)="onSubmit()">Submit</button>
+  <button type="submit" class="btn btn-dark" [disabled]="!authForm.valid" (click)="onSubmit()">
+    {{'login.submit' | translate}}
+  </button>
 </form>

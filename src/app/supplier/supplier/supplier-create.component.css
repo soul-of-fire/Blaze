@@ -1,0 +1,4 @@
+:host >>> input.ng-invalid, :host >>> select.ng-invalid {
+    border-left: 5px solid #a94442;
+    padding-left: 7px;
+}

@@ -1,0 +1,177 @@
+https://github.com/AlexKhymenko/ngx-permissions
+
+Уеб приложение с Angular 6, което да съдържа следната
+функционалност:
+    1. Аутентикация
+    1.1 Landing страница, на която има login форма.
+    1.2 Логин:
+    1.2.1 Извикване на ендпойнт за логин с мейл и парола.
+    1.2.2 При успешно логване се получават 2 токена - authentication и
+refresh, както и ролите на потребителя.
+    1.2.3 Използва се JWT библиотеката.
+    1.2.4 След като expire–не authentication токен-a, трябва да се
+извиква ендпойнт, който получава нов валиден access token без логаут.
+    2. Система
+    2.1 Меню от няколко елемента.
+    2.2 При клик на един елемент в менюто, да се зарежда съдържание в
+останалата част на страницата, променяйки урл-а.
+    2.2.1 На екрана се показват едно под друго:
+        1. Бутон за добавяне на нов обект към таблицата от 3.
+        2. Форма за търсене по колоните в таблицата от 3.
+        3. Таблица със съдържанието свързано към бутона в менюто.
+        3.1 Таблицата може да се сортира по колона
+        3.2 Таблицата има pagination.
+        3.3 Последната колона в таблицата е за действия - редактиране,
+изтриване, преглед.
+        3.4 Всички дейстивия на таблицата получават данни чрез
+комуникация през Rest API.
+    3. При клик на бутона за добавяне, редактиране, преглед на елемент
+от таблицата:
+    3.1 Променя се урл-а
+    3.2 Заменя се таблицата с нов компонент, който има следните
+варианти:
+    3.2.1 Добавяне - празна форма с бутон "Добави".
+    3.2.2 Редактиране - попълнена форма с взети данни от сървъра за
+конкретното id, което се редактира и бутон "Промени".
+    3.2.3 Преглед - попълнена форма с взети данни от сървъра за
+конкретното id, което се преглежда, формата е disable-ната.
+    3.3. При натискане на бутона от формата за добавяне/редактиране:
+     3.3.1 Извиква се валидация на данните, които ще бъдат пращани към
+сървъра.
+     3.3.2 При успешна валидация се извиква конкретен ендпойнт, който
+създава/редактира обекта.
+     3.3.3 При неуспешна валидация се показва глобално съобщение за
+грешка. 
+
+-----
+
+get 5 {
+	"total": 11,
+	"list": [{
+		"site": {
+			"id": 1,
+			"name": "Office"
+		},
+		"id": 1,
+		"name": "Kamara",
+		"address": "9217 Kim Drives\nSouth Nancy, VI 71537-4231",
+		"phone": "0223 Karen Landing Apt. 976New Nancy, WA 22336",
+		"fax": "76694 Amanda Walks Suite 767Lake Chase, MH 651895555",
+		"email": "1530618724182@gmail.com",
+		"contact": "Greg Pearson",
+		"priority": 81635,
+		"is_active": true
+	}, {
+		"site": {
+			"id": 1,
+			"name": "Office"
+		},
+		"id": 2,
+		"name": "Kamara",
+		"address": "9217 Kim DrivesSouth Nancy, VI 71537-4231",
+		"phone": "0223 Karen Landing Apt. 976New Nancy, WA 22336",
+		"fax": "76694 Amanda Walks Suite 767Lake Chase, MH 65189",
+		"email": "daa@aha.com",
+		"contact": "Greg Pearson",
+		"priority": 81635,
+		"is_active": true
+	}, {
+		"site": {
+			"id": 1,
+			"name": "Office"
+		},
+		"id": 3,
+		"name": "Kamara2",
+		"address": "9217 Kim DrivesSouth Nancy, VI 71537-4231",
+		"phone": "0223 Karen Landing Apt. 976New Nancy, WA 22336",
+		"fax": "76694 Amanda Walks Suite 767Lake Chase, MH 6518999",
+		"email": "asd@aha.com",
+		"contact": "Greg Pearson",
+		"priority": 81635,
+		"is_active": false
+	}, {
+		"site": {
+			"id": 1,
+			"name": "Office"
+		},
+		"id": 4,
+		"name": "Name",
+		"address": "9217 Kim DrivesSouth Nancy, VI 71537-4231",
+		"phone": "0223 Karen Landing Apt. 976New Nancy, WA 2233",
+		"fax": "76694 Amanda Walks Suite 767Lake Chase, MH 65189",
+		"email": "da@aha.com",
+		"contact": "Greg Pearson",
+		"priority": 81635,
+		"is_active": false
+	}, {
+		"site": {
+			"id": 1,
+			"name": "Office"
+		},
+		"id": 5,
+		"name": "sdf",
+		"address": "9217 Kim DrivesSouth Nancy, VI 71537-4231",
+		"phone": "0223 Karen Landing Apt. 976New Nancy, WA 22336",
+		"fax": "76694 Amanda Walks Suite 767Lake Chase, MH 65189",
+		"email": "2@gmail.com",
+		"contact": "Greg Pearson",
+		"priority": 81635,
+		"is_active": true
+	}]
+}
+
+getById {
+	"site": {
+		"id": 1,
+		"name": "Office"
+	},
+	"id": 1,
+	"name": "Kamara",
+	"address": "9217 Kim Drives\nSouth Nancy, VI 71537-4231",
+	"phone": "0223 Karen Landing Apt. 976New Nancy, WA 22336",
+	"fax": "76694 Amanda Walks Suite 767Lake Chase, MH 651895555",
+	"email": "1530618724182@gmail.com",
+	"contact": "Greg Pearson",
+	"priority": 81635,
+	"is_active": true
+}
+
+post: {
+	"id": 1,
+	"name": "Kamara",
+	"address": "9217 Kim Drives\nSouth Nancy, VI 71537-4231",
+	"phone": "0223 Karen Landing Apt. 976New Nancy, WA 223366",
+	"fax": "76694 Amanda Walks Suite 767Lake Chase, MH 651895555",
+	"email": "1530618724182@gmail.com",
+	"contact": "Greg Pearson",
+	"priority": 81635,
+	"site_id": 1
+}
+returned {
+	"site": {
+		"id": 1,
+		"name": "Office"
+	},
+	"id": 1,
+	"name": "Kamara",
+	"address": "9217 Kim Drives\nSouth Nancy, VI 71537-4231",
+	"phone": "0223 Karen Landing Apt. 976New Nancy, WA 223366",
+	"fax": "76694 Amanda Walks Suite 767Lake Chase, MH 651895555",
+	"email": "1530618724182@gmail.com",
+	"contact": "Greg Pearson",
+	"priority": 81635,
+	"is_active": true
+}
+
+delete {}
+
+create post {
+	"name": "ertert",
+	"address": "ertert",
+	"phone": "ertert",
+	"fax": "ertert",
+	"email": "ert@dfg.com",
+	"contact": "wer",
+	"priority": 6,
+	"site_id": 1
+}

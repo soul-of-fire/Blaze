@@ -1,0 +1,24 @@
+<div class="card bg-light">
+  <div class="card-header">
+      <p class="card-text">
+        Supplier
+        <button (click)="create()" class="btn btn-dark btn-sm float-right"><i class="fa fa-plus"></i> Create</button>
+      </p>
+  </div>
+  <div class="card-body">
+    <div class="card-text" >
+      <app-dynamic-table
+        [rows$]="rows$" 
+        [config]="config" 
+        [pageSize]="5"
+        (onSearch)="onSearch($event)" 
+        (onEdit)="onEdit($event)"
+        (onRemove)="onRemove($event)"
+        (onSelect)="onSelect($event)">
+        <ng-template #parse let-value="value" let-col="col">
+          {{value.name}}
+        </ng-template>
+      </app-dynamic-table>
+    </div>
+  </div>
+</div>
