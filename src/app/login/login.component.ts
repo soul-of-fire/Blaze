@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { LogIn } from '../root/shared/store/auth-store';
+import { Sign } from '../root/shared/store/auth-store';
 import { User } from '../root/shared/models/user';
 
 @Component({
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   get password() { return this.authForm.get('password'); }
 
   onSubmit() {
-    this.store.dispatch(new LogIn(new User(this.username.value, this.password.value)));
+    this.store.dispatch(new Sign(new User(this.username.value, this.password.value)));
   }
 
 }
