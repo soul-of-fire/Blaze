@@ -1,4 +1,4 @@
-# Moovex
+# Blaze
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.5.
 
@@ -35,13 +35,13 @@ Install Node.js - https://nodejs.org/en/
 
 Open new Git Bash:
 Install Angular CLI - https://cli.angular.io/
-Run in 'Moovex-Web': npm install
-Go to Moovex-Web/server: npm install
+Run in 'Blaze': npm install
+Go to Blaze/server: npm install
 
 Run application:
-Run in 'Moovex-Web': ng serve
+Run in 'Blaze': ng serve
 In browser: http://localhost:4200/
 
 If you like to use local development server:
-Run in new Git Bash 'Moovex-Web/server': node server
-Change configuration in 'Moovex-Web\src\app\root\shared\api\api-service.ts' - host
+Run in new Git Bash 'Blaze/server': node server
+Change configuration in 'Blaze\src\app\root\shared\api\api-service.ts' - host
