@@ -15,8 +15,8 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['supplier']">Supplier</a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['permission']">Permission</a>
+        <li class="nav-item" *ngxPermissionsOnly="['ADMIN']" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['permission']">Admin</a>
         </li>
         <li>
           <a class="nav-link" (click)="onLogout()" style="cursor: pointer;">Logout</a>

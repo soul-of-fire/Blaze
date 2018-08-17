@@ -18,7 +18,7 @@ export class AuthEffects {
       map((data: any) => {
         const authorization = data.headers.get('authorization');
         const refresh = data.headers.get('refresh');
-        return new LogIn(new UserInfo(authorization, refresh));
+        return new LogIn(new UserInfo(authorization, refresh, data.body.permissions));
       })
     )
     )

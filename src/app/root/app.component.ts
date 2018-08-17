@@ -3,6 +3,8 @@ import { AuthService } from './shared/auth/auth.service';
 import { ApiService } from './shared/api/api.service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { NgxPermissionsService } from 'ngx-permissions';
+import { Store } from '@ngrx/store';
+import { UserInfo } from './shared/models/user-info';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +19,8 @@ export class AppComponent implements OnInit {
   constructor(public authService: AuthService, 
               private apiService: ApiService, 
               private permissionsService: NgxPermissionsService,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private store: Store<any>) {
     translate.setDefaultLang('en');
   }
 
@@ -30,7 +33,9 @@ export class AppComponent implements OnInit {
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.dir = event.lang == 'en' ? 'ltr' : 'rtl';
     });
-    this.permissionsService.loadPermissions(["ADMIN"]);
+    this.store.select('auth').subscribe((user: UserInfo) => {
+      user && this.permissionsService.loadPermissions(user.permissions);
+    });
   }
 
   useLanguage(language: string) {
