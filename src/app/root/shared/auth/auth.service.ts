@@ -16,7 +16,7 @@ export class AuthService {
     this.store.select('auth').subscribe((user: UserInfo) => {
       if (user) {
         this.isLogged = true;
-        this.router.navigate(['supplier']);
+        window.location.href.indexOf('login') > 0 && this.router.navigate(['supplier']);
       } else {
         this.isLogged = false;
         this.router.navigate(['login']);
