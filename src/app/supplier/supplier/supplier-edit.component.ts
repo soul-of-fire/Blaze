@@ -5,7 +5,6 @@ import { withLatestFrom, takeUntil } from 'rxjs/operators';
 import { Supplier } from 'src/app/supplier/shared/models/supplier';
 import { Edit } from 'src/app/supplier/shared/store/supplier-store';
 import { SupplierCreateComponent } from 'src/app/supplier/supplier/supplier-create.component';
-import { DateModel } from 'src/app/common/dynamic-table/dynamic-table/shared/date-model';
 
 @Component({
   selector: 'app-supplier-edit',

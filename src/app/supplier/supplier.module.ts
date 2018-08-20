@@ -8,7 +8,6 @@ import { DynamicFormsNGBootstrapUIModule } from "@ng-dynamic-forms/ui-ng-bootstr
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { SupplierListComponent } from 'src/app/supplier/supplier-list/supplier-list.component';
-import { DynamicTableModule } from 'src/app/common/dynamic-table/dynamic-table.module';
 import { SupplierEffects } from 'src/app/supplier/shared/store/supplier-effects';
 import { SupplierService } from 'src/app/supplier/shared/common/supplier.service';
 import { SupplierEditResolver } from 'src/app/supplier/shared/common/supplier-edit-resolver';
@@ -16,6 +15,7 @@ import { suppliersReducer } from 'src/app/supplier/shared/store/supplier-store';
 import { SupplierEditComponent } from 'src/app/supplier/supplier/supplier-edit.component';
 import { SupplierCreateComponent } from 'src/app/supplier/supplier/supplier-create.component';
 import { SupplierPreviewComponent } from 'src/app/supplier/supplier/supplier-preview.component';
+import { TableGeneratorModule } from 'src/app/common/table-generator/table-generator.module';
 
 const routes = [
   { path: '', component: SupplierListComponent },
@@ -36,7 +36,7 @@ const routes = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicTableModule,
+    TableGeneratorModule,
     DynamicFormsCoreModule.forRoot(), 
     DynamicFormsNGBootstrapUIModule,
     RouterModule.forChild(routes),

@@ -7,7 +7,7 @@
   </div>
   <div class="card-body">
     <div class="card-text" >
-      <app-dynamic-table
+      <app-table-generator
         [rows$]="rows$" 
         [config]="config" 
         [pageSize]="5"
@@ -18,7 +18,7 @@
         <ng-template #parse let-value="value" let-col="col">
           {{value.name}}
         </ng-template>
-      </app-dynamic-table>
+      </app-table-generator>
     </div>
   </div>
 </div>

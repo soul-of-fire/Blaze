@@ -1,5 +1,3 @@
-import { DateModel } from "src/app/common/dynamic-table/dynamic-table/shared/date-model";
-
 export class Supplier {
   public id: number;
   public name: string;

@@ -25,6 +25,7 @@ import { SupplierResolver } from 'src/app/supplier/shared/common/supplier-resolv
 import { ConfirmComponent } from 'src/app/common/confirm/confirm/confirm.component';
 import { ConfirmModule } from 'src/app/common/confirm/confirm.module';
 import { PermissionComponent } from './permission/permission.component';
+import { FormGeneratorModule } from './common/form-generator/form-generator.module';
 
 const routes = [
   { path: '', redirectTo: 'supplier', pathMatch: 'full' },
@@ -68,7 +69,8 @@ const routes = [
         }
     }),
     ConfirmModule,
-    NgxPermissionsModule.forRoot()
+    NgxPermissionsModule.forRoot(),
+    FormGeneratorModule
   ],
   declarations: [
     AppComponent,

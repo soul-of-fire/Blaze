@@ -3,13 +3,13 @@ import { HttpParams } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { Options } from 'src/app/supplier/shared/models/options';
-import { Page } from '../dynamic-table/shared/page';
-import { DateModel, instanceOfDateModel } from 'src/app/common/dynamic-table/dynamic-table/shared/date-model';
+import { instanceOfDateModel } from 'src/app/common/table-generator/table-generator/shared/date-model';
+import { Page } from 'src/app/common/table-generator/table-generator/shared/page';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DynamicTableService {
+export class TableGeneratorService {
 
   constructor() { }
 

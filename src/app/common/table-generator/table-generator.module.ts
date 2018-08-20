@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { DynamicTableComponent } from 'src/app/common/dynamic-table/dynamic-table/dynamic-table.component';
-import { CapitalizeFirstPipe } from 'src/app/common/dynamic-table/shared/pipes/capitalize-first.pipe';
-import { DynamicTableService } from './shared/dynamic-table.service';
 import { ConfirmModule } from 'src/app/common/confirm/confirm.module';
-import { FieldComponent } from 'src/app/common/dynamic-table/field/field.component';
 import { DynamicFormsCoreModule } from '@ng-dynamic-forms/core';
 import { DynamicFormsNGBootstrapUIModule } from '@ng-dynamic-forms/ui-ng-bootstrap';
+import { TableGeneratorComponent } from 'src/app/common/table-generator/table-generator/table-generator.component';
+import { FieldComponent } from 'src/app/common/table-generator/field/field.component';
+import { CapitalizeFirstPipe } from 'src/app/common/table-generator/shared/pipes/capitalize-first.pipe';
+import { TableGeneratorService } from 'src/app/common/table-generator/shared/table-generator.service';
 
 @NgModule({
   imports: [
@@ -21,15 +21,15 @@ import { DynamicFormsNGBootstrapUIModule } from '@ng-dynamic-forms/ui-ng-bootstr
     ConfirmModule
   ],
   declarations: [
-    DynamicTableComponent,
+    TableGeneratorComponent,
     CapitalizeFirstPipe,
     FieldComponent
   ],
   providers: [
-    DynamicTableService
+    TableGeneratorService
   ],
   exports: [
-    DynamicTableComponent
+    TableGeneratorComponent
   ]
 })
-export class DynamicTableModule { }
+export class TableGeneratorModule { }

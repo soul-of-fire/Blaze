@@ -2,22 +2,22 @@ import { Component, OnInit, OnDestroy, Input, Output, ViewChild, EventEmitter, C
 import { Store } from '@ngrx/store';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Page } from 'src/app/common/dynamic-table/dynamic-table/shared/page';
 import { Observable } from 'rxjs';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { Base } from 'src/app/root/shared/common/base';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 import { Options } from 'src/app/supplier/shared/models/options';
-import { DynamicTableService } from 'src/app/common/dynamic-table/shared/dynamic-table.service';
 import { Payload } from '../../../supplier/shared/models/payload';
+import { TableGeneratorService } from 'src/app/common/table-generator/shared/table-generator.service';
+import { Page } from 'src/app/common/table-generator/table-generator/shared/page';
 
 @Component({
-  selector: 'app-dynamic-table',
-  templateUrl: './dynamic-table.component.html',
-  styleUrls: ['./dynamic-table.component.css']
+  selector: 'app-table-generator',
+  templateUrl: './table-generator.component.html',
+  styleUrls: ['./table-generator.component.css']
 })
-export class DynamicTableComponent extends Base implements OnInit, OnDestroy, AfterViewChecked {
+export class TableGeneratorComponent extends Base implements OnInit, OnDestroy, AfterViewChecked {
   @Input() rows$: Observable<any>;
   @Input() config: any;
   @Input() pageSize: any;
@@ -37,7 +37,7 @@ export class DynamicTableComponent extends Base implements OnInit, OnDestroy, Af
 
   constructor(private store: Store<any>,
     private formBuilder: FormBuilder,
-    private dynamicTableService: DynamicTableService,
+    private dynamicTableService: TableGeneratorService,
     private router: Router,
     private cdRef: ChangeDetectorRef) {
     super();
