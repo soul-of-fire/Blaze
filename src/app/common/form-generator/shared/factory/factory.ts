@@ -5,9 +5,9 @@ import { SelectType } from 'src/app/common/table-generator/field/shared/factory/
 import { StringType } from 'src/app/common/table-generator/field/shared/factory/fields/string-type';
 
 export class Factory {
-  public static createField(col: any): DynamicFormControlModel {
+  public static createField(element: any): DynamicFormControlModel {
     let field;
-    switch (col.type) {
+    switch (element.type) {
       case 'date':
         field = new DateType();
         break;
@@ -17,6 +17,6 @@ export class Factory {
       default:
         field = new StringType();
     }
-    return field.create(col);
+    return field.create(element);
   }
 }

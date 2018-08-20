@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { DynamicFormControlModel, DynamicFormService, DynamicInputModel, DynamicFormLayout } from '@ng-dynamic-forms/core';
+import { DynamicFormControlModel, DynamicFormService, DynamicInputModel, DynamicFormLayout, DynamicFormGroupModel } from '@ng-dynamic-forms/core';
 import { Factory } from 'src/app/common/form-generator/shared/factory/factory';
 
 @Component({
@@ -11,28 +11,49 @@ import { Factory } from 'src/app/common/form-generator/shared/factory/factory';
 export class FormGeneratorComponent implements OnInit {
 
   FORM: DynamicFormControlModel[] = [
-    new DynamicInputModel({
-      id: "name",
-      label: "Name",
-      validators: {
-        required: null
-      },
-      errorMessages: {
-        required: "{{ label }} is required."
-      }
+    new DynamicFormGroupModel({
+      id: "group",
+      group: [
+        new DynamicInputModel({
+          id: "name",
+          label: "Name",
+          validators: {
+            required: null
+          },
+          errorMessages: {
+            required: "{{ label }} is required."
+          }
+        }),
+        new DynamicInputModel({
+          id: "title",
+          label: "Title",
+          validators: {
+            required: null
+          },
+          errorMessages: {
+            required: "{{ label }} is required."
+          }
+        }),
+      ]
     }),
   ];
 
   FORM_LAYOUT = {
     "name": {
-      "element": {
-        "container": "input-element-container row",
-        "label": "input-element-label col-sm-2 col-form-label",
-      },
-      "grid": {
-        "control": "input-grid-control col-sm-10",
+      element: {
+        "host": "col-md-6"
       }
     },
+    "title": {
+      element: {
+        "host": "col-md-6"
+      }
+    },
+    "group": {
+      element: {
+        "control": "group-element-control form-row"
+      }
+    }
   };
 
   formModel: DynamicFormControlModel[] = this.FORM;

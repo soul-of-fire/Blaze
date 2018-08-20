@@ -1,0 +1,17 @@
+[
+  {
+    "type": "group",
+    "children": [
+      {
+        "type": "string",
+        "id": "name",
+        "label": "Name"
+      },
+      {
+        "type": "string",
+        "id": "title",
+        "label": "Title"
+      }
+    ]
+  }
+]
