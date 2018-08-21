@@ -11,7 +11,7 @@ import { FormGeneratorService } from 'src/app/common/form-generator/shared/form-
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DynamicFormsCoreModule.forRoot(), 
+    DynamicFormsCoreModule.forRoot(),
     DynamicFormsNGBootstrapUIModule,
   ],
   declarations: [

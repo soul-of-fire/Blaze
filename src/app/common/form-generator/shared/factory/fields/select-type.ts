@@ -1,10 +1,11 @@
 import { DynamicSelectModel } from "@ng-dynamic-forms/core";
 
 export class SelectType {
-  public create(col: any) {
+  public create(element: any) {
     return new DynamicSelectModel({
-      id: col.name,
-      options: col.dropdownData.map((option: any) => ({
+      id: element.id,
+      label: element.label,
+      options: element.dropdownData.map((option: any) => ({
         label: option.label,
         value: option.value
       })) || []

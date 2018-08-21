@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Injector } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
@@ -90,7 +90,12 @@ const routes = [
     ConfirmComponent
   ]
 })
-export class AppModule { }
+export class AppModule { 
+  static injector: Injector;
+  constructor(injector: Injector) {
+    AppModule.injector = injector;
+  }
+}
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);

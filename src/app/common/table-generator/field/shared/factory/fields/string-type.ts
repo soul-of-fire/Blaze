@@ -1,9 +1,10 @@
 import { DynamicInputModel } from "@ng-dynamic-forms/core";
 
 export class StringType {
-  public create(col: any) {
+  public create(element: any) {
     return new DynamicInputModel({
-      id: col.name
+      id: element.id,
+      label: element.label
     });
   }
 }
