@@ -5,7 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
 import { DynamicFormsNGBootstrapUIModule } from "@ng-dynamic-forms/ui-ng-bootstrap";
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { SupplierListComponent } from 'src/app/supplier/supplier-list/supplier-list.component';
 import { SupplierEffects } from 'src/app/supplier/shared/store/supplier-effects';
@@ -16,6 +16,7 @@ import { SupplierEditComponent } from 'src/app/supplier/supplier/supplier-edit.c
 import { SupplierCreateComponent } from 'src/app/supplier/supplier/supplier-create.component';
 import { SupplierPreviewComponent } from 'src/app/supplier/supplier/supplier-preview.component';
 import { TableGeneratorModule } from 'src/app/common/table-generator/table-generator.module';
+import { FormGeneratorModule } from 'src/app/common/form-generator/form-generator.module';
 
 const routes = [
   { path: '', component: SupplierListComponent },
@@ -41,7 +42,9 @@ const routes = [
     DynamicFormsNGBootstrapUIModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature('suppliers', suppliersReducer),
-    EffectsModule.forFeature([SupplierEffects])
+    EffectsModule.forFeature([SupplierEffects]),
+    FormsModule,
+    FormGeneratorModule
   ],
   declarations: [
     SupplierListComponent,

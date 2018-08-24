@@ -7,7 +7,7 @@
       <form [formGroup]="formGroup">
         <dynamic-ng-bootstrap-form [group]="formGroup" [model]="formModel" [layout]="formLayout"></dynamic-ng-bootstrap-form>
       </form>
-      <button (click)="submit()" *ngIf="isSubmit" class="btn btn-dark m-1">Submit</button>
+      <button (click)="submit()" *ngIf="isSubmit" class="btn btn-dark m-1" [disabled]="!formGroup.valid">Submit</button>
       <button (click)="cancel()" class="btn btn-dark m-1">Cancel</button>
     </section>
   </div>
