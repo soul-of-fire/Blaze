@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { withLatestFrom, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
 import { Supplier } from 'src/app/supplier/shared/models/supplier';
 import { SupplierEditComponent } from 'src/app/supplier/supplier/supplier-edit.component';

@@ -1,3 +1,5 @@
-<form [formGroup]="formGroup">
-  <dynamic-ng-bootstrap-form [group]="formGroup" [model]="formModel" [layout]="formLayout"></dynamic-ng-bootstrap-form>
-</form>
+<div *ngIf="(form$ | async) as form">
+  <form [formGroup]="form.formGroup">
+    <dynamic-ng-bootstrap-form [group]="form.formGroup" [model]="form.formModel" [layout]="form.formLayout"></dynamic-ng-bootstrap-form>
+  </form>
+</div>
