@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { DynamicFormService } from '@ng-dynamic-forms/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGeneratorService } from 'src/app/common/form-generator/shared/form-generator.service';
-import { elements } from '../shared/data/data';
-import { of, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-form-generator',
@@ -10,13 +8,12 @@ import { of, Observable } from 'rxjs';
   styleUrls: ['./form-generator.component.css']
 })
 export class FormGeneratorComponent implements OnInit {
+  @Input() form$: Observable<any>;
+  @Input() layout$: Observable<any>;
 
-  form$: Observable<any>;
-
-  constructor(private formService: DynamicFormService, private formGeneratorService: FormGeneratorService) { }
+  constructor(private formGeneratorService: FormGeneratorService) { }
 
   ngOnInit() {
-    this.form$ = this.formGeneratorService.build(of(elements), of({}));
+    this.form$ = this.formGeneratorService.build(this.form$, this.layout$);
   }
-
 }
