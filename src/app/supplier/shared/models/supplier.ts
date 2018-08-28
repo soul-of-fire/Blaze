@@ -20,9 +20,7 @@ export class Supplier {
     this.contact = raw.contact;
     this.priority = raw.priority;
     this.site = raw.site;
-    this.created = raw.created && 
-      typeof raw.created == 'string' && 
-      this.stringToDate(raw.created) || raw.created;
+    this.created = raw.created && typeof raw.created == 'string' && this.stringToDate(raw.created) || raw.created;
   }
 
   private stringToDate(value) {

@@ -19,9 +19,9 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./supplier-create.component.css']
 })
 export class SupplierCreateComponent extends Base implements OnInit, OnDestroy {
-  formModel: DynamicFormControlModel[];
-  formGroup: FormGroup;
-  formLayout: DynamicFormLayout;
+  protected formModel: DynamicFormControlModel[];
+  protected formGroup: FormGroup;
+  protected formLayout: DynamicFormLayout;
 
   label = 'Create';
   isSubmit = true;
@@ -34,21 +34,26 @@ export class SupplierCreateComponent extends Base implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.buildForm(new Supplier({}));
+  }
+  
+  protected buildForm(supplier: Supplier, disable: boolean = false): void {
     this.formGeneratorService.build(of(FORM), of(LAYOUT)).pipe(
       takeUntil(this.destroy$)
     ).subscribe((data: any) => {
       this.formGroup = data.formGroup;
       this.formModel = data.formModel;
       this.formLayout = data.formLayout;
-      this.formGroup.get('group').patchValue(new Supplier({}));
+      this.formGroup.get('group').patchValue(supplier);
+      disable && this.formGroup.disable();
     });
   }
 
-  submit() {
+  protected submit(): void {
     this.store.dispatch(new Create(new Supplier(this.formGroup.getRawValue().group).transform()));
   }
 
-  cancel() {
+  protected cancel(): void {
     this.router.navigate(['../']);
   }
 }

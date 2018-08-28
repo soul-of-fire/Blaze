@@ -16,14 +16,7 @@ export class SupplierPreviewComponent extends SupplierEditComponent implements O
   isSubmit = false;
 
   ngOnInit() {
-    this.formGeneratorService.build(of(FORM), of(LAYOUT)).pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((data: any) => {
-      this.formGroup = data.formGroup;
-      this.formModel = data.formModel;
-      this.formLayout = data.formLayout;
-      this.formGroup.get('group').patchValue(new Supplier(this.route.snapshot.data.supplier));
-      this.formGroup.disable();
-    });
+    const supplier = new Supplier(this.route.snapshot.data.supplier);
+    this.buildForm(supplier, true);
   }
 }

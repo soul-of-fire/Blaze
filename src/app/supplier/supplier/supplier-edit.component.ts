@@ -19,15 +19,8 @@ export class SupplierEditComponent extends SupplierCreateComponent implements On
   isSubmit = true;
 
   ngOnInit() {
-    this.formGeneratorService.build(of(FORM), of(LAYOUT)).pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((data: any) => {
-      this.formGroup = data.formGroup;
-      this.formModel = data.formModel;
-      this.formLayout = data.formLayout;
-      this.supplier = new Supplier(this.route.snapshot.data.supplier);
-      this.formGroup.get('group').patchValue(this.supplier);
-    });
+    this.supplier = new Supplier(this.route.snapshot.data.supplier);
+    this.buildForm(this.supplier);
   }
 
   submit() {
