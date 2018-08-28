@@ -34,7 +34,7 @@ export class SupplierCreateComponent extends Base implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.buildForm(new Supplier({}));
+    this.buildForm(new Supplier());
   }
   
   protected buildForm(supplier: Supplier, disable: boolean = false): void {
@@ -50,7 +50,7 @@ export class SupplierCreateComponent extends Base implements OnInit, OnDestroy {
   }
 
   protected submit(): void {
-    this.store.dispatch(new Create(new Supplier(this.formGroup.getRawValue().group).transform()));
+    this.store.dispatch(new Create(new Supplier(this.formGroup.getRawValue().group)));
   }
 
   protected cancel(): void {

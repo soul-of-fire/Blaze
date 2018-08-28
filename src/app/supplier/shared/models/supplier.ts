@@ -1,3 +1,5 @@
+import { TableGeneratorService } from "src/app/common/table-generator/shared/table-generator.service";
+
 export class Supplier {
   public id: number;
   public name: string;
@@ -8,31 +10,17 @@ export class Supplier {
   public contact: string;
   public priority: number;
   public created: any;
-  public site: any
-
-  constructor(raw?: any) {
-    this.id = raw.id;
-    this.name = raw.name;
-    this.address = raw.address;
-    this.phone = raw.phone;
-    this.fax = raw.fax;
-    this.email = raw.email;
-    this.contact = raw.contact;
-    this.priority = raw.priority;
-    this.site = raw.site;
-    this.created = raw.created && typeof raw.created == 'string' && this.stringToDate(raw.created) || raw.created;
+  public site: any;
+  constructor(raw?: Supplier) { 
+    Object.assign(this, raw);
   }
 
-  private stringToDate(value) {
-    const date = new Date(value);
-    return {
-      "year": date.getFullYear(),
-      "month": date.getMonth() + 1,
-      "day": date.getDate()
-    }
+  public toSupplier(service: TableGeneratorService): Supplier {
+    this.created = service.stringToDate(this.created);
+    return this;
   }
 
-  public transform() {
+  public toObject(service: TableGeneratorService): any {
     return {
       id: this.id,
       name: this.name,
@@ -42,8 +30,8 @@ export class Supplier {
       email: this.email,
       contact: this.contact,
       priority: Number(this.priority),
-      site_id: this.site && this.site.id || 1,
-      created: this.created && `${this.created.year}-${this.created.month}-${this.created.day}`
+      created: service.dateToString(this.created),
+      site_id: this.site && this.site.id || 1
     }
   }
 }

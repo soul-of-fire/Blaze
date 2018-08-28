@@ -24,7 +24,7 @@ export class SupplierEditComponent extends SupplierCreateComponent implements On
   }
 
   submit() {
-    const merged = Object.assign(this.supplier, this.formGroup.getRawValue().group);
-    this.store.dispatch(new Edit(merged.transform()));
+    const updated = Object.assign(this.supplier, this.formGroup.getRawValue().group);
+    this.store.dispatch(new Edit(updated));
   }
 }
