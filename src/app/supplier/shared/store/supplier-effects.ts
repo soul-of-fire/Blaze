@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Action } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map, switchMap, tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { LOAD, Loaded, SEARCH, EDIT, Edited, CREATE, Created, REMOVE, Removed } from './supplier-store';
+import { Observable, forkJoin } from 'rxjs';
+import { LOAD, Loaded, SEARCH, EDIT, Edited, CREATE, Created, REMOVE, Removed, Contacts } from './supplier-store';
 import { CommonAction } from 'src/app/root/shared/store/common-action';
 import { ApiService } from 'src/app/root/shared/api/api.service';
 import { Options } from '../models/options';
@@ -17,8 +17,14 @@ export class SupplierEffects {
 
   @Effect() load$: Observable<Action> = this.actions$.pipe(
     ofType(LOAD),
-    switchMap(() => this.apiService.get('/admin/supplier?page=1&per_page=5').pipe(
-        map((data: Payload) => new Loaded(data))
+    switchMap(() => forkJoin([
+      this.apiService.get('/admin/contacts'),
+      this.apiService.get('/admin/supplier?page=1&per_page=5')
+      ]).pipe(
+        map(([contacts, suppliers]) => {
+          this.store.dispatch(new Contacts(contacts.contacts));
+          return new Loaded(suppliers);
+        })
       )
     )
   );
@@ -65,5 +71,6 @@ export class SupplierEffects {
   constructor(private router: Router, 
               private actions$: Actions, 
               private apiService: ApiService, 
-              private tableGeneratorService: TableGeneratorService) {}
+              private tableGeneratorService: TableGeneratorService,
+              private store: Store<any>) {}
 }

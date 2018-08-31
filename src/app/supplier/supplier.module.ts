@@ -11,7 +11,7 @@ import { SupplierListComponent } from 'src/app/supplier/supplier-list/supplier-l
 import { SupplierEffects } from 'src/app/supplier/shared/store/supplier-effects';
 import { SupplierService } from 'src/app/supplier/shared/common/supplier.service';
 import { SupplierEditResolver } from 'src/app/supplier/shared/common/supplier-edit-resolver';
-import { suppliersReducer } from 'src/app/supplier/shared/store/supplier-store';
+import { supplierReducers } from 'src/app/supplier/shared/store/supplier-store';
 import { SupplierEditComponent } from 'src/app/supplier/supplier/supplier-edit.component';
 import { SupplierCreateComponent } from 'src/app/supplier/supplier/supplier-create.component';
 import { SupplierPreviewComponent } from 'src/app/supplier/supplier/supplier-preview.component';
@@ -41,7 +41,7 @@ const routes = [
     DynamicFormsCoreModule.forRoot(), 
     DynamicFormsNGBootstrapUIModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature('suppliers', suppliersReducer),
+    StoreModule.forFeature('supplier', supplierReducers),
     EffectsModule.forFeature([SupplierEffects]),
     FormsModule,
     FormGeneratorModule

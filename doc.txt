@@ -204,3 +204,14 @@ this.store.select('auth').subscribe((user: any) => {
 	isLogged = user != null;
 });
 return isLogged;
+
+switchMap((action: CommonAction<Options>) => forkJoin([
+	this.apiService.get('/admin/contacts'),
+	this.apiService.get('/admin/supplier?page=1&per_page=5')
+	]).pipe(
+		map((data: Payload) => {
+			data[1].contacts = data[0].contacts;
+			return new Loaded(data[1]);
+		})
+	)
+)

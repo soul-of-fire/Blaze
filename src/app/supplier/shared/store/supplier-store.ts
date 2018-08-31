@@ -3,6 +3,7 @@ import { CommonAction } from 'src/app/root/shared/store/common-action';
 import { Options } from '../models/options';
 import { Supplier } from 'src/app/supplier/shared/models/supplier';
 import { Payload } from 'src/app/supplier/shared/models/payload';
+import { ActionReducerMap } from '@ngrx/store';
 
 export const LOAD = 'LOAD';
 export const LOADED = 'LOADED';
@@ -13,6 +14,7 @@ export const CREATE = 'CREATE';
 export const CREATED = 'CREATED';
 export const REMOVE = 'REMOVE';
 export const REMOVED = 'REMOVED';
+export const CONTACTS = 'CONTACTS';
 
 export class Load extends CommonAction<void> {
   type = LOAD;
@@ -50,7 +52,11 @@ export class Removed extends CommonAction<Supplier> {
   type = REMOVED;
 }
 
-export function suppliersReducer(payload: Payload = new Payload(0, []), action: CommonAction<Supplier | Payload>) {
+export class Contacts extends CommonAction<any> {
+  type = CONTACTS;
+}
+
+function suppliersReducer(payload: Payload = new Payload(0, []), action: CommonAction<Supplier | Payload>) {
   switch (action.type) {
     case LOADED:
       return action.payload;
@@ -71,3 +77,15 @@ export function suppliersReducer(payload: Payload = new Payload(0, []), action: 
       return payload;
   }
 }
+
+function contactsReducer(payload: any = [], action: CommonAction<any>) { 
+  if(action.type == CONTACTS) {
+    return cloneDeep(action.payload) 
+  }
+  return payload;
+};
+
+export const supplierReducers: ActionReducerMap<any> = {
+  suppliers: suppliersReducer,
+  contacts: contactsReducer,
+};

@@ -16,7 +16,8 @@ app.use(bodyParser());
 var example = {
   supplier: require(sample + 'supplier.json'),
   admin: require(sample + 'permissions-admin.json'),
-  guest: require(sample + 'permissions-guest.json')
+  guest: require(sample + 'permissions-guest.json'),
+  contacts: require(sample + 'contacts.json')
 };
 
 app.get('/admin/supplier', function (req, res) {
@@ -90,6 +91,13 @@ app.post('/admin/auth/refresh-access-token', function (req, res) {
     res.setHeader('Refresh', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjbGFpbXMiOnsidXNlciI6eyJpZCI6MiwidXNlcm5hbWUiOiJrYW1hcmEiLCJlbWFpbCI6ImluZm9AbW9vdmV4LmNvbSIsImZpcnN0X25hbWUiOiJDdXN0b21lciIsImxhc3RfbmFtZSI6IkN1c3RvbWVyb3YiLCJwaG9uZSI6IiszNTk4OTk3NzY2NDQiLCJleHBpcmVzX29uIjoiMTYwMzE1MjAwMCIsImN1c3RvbWVyIjp7ImlkIjoxLCJuYW1lIjoiS2FtYXJhIn19fSwiZXhwIjo4NzkzMTQ4MzcxMn0.WBi5ZnrVhiK0_hsZf1_9N_w2Xtfsne1SNxr-WihH5K4');
     res.header("Access-Control-Expose-Headers", ["Authorization", "Refresh"]);
     res.send();
+  }, 0);
+});
+
+app.get('/admin/contacts', function (req, res) {
+  setTimeout( function() {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(example.contacts);
   }, 0);
 });
 

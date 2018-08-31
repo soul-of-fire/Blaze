@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import { Base } from 'src/app/root/shared/common/base';
-import { FORM, LAYOUT } from 'src/app/supplier/shared/schema';
+import { shema$, layout$ } from 'src/app/supplier/shared/schema';
 import { SupplierService } from 'src/app/supplier/shared/common/supplier.service';
 import { Supplier } from 'src/app/supplier/shared/models/supplier';
 import { Create } from 'src/app/supplier/shared/store/supplier-store';
@@ -38,14 +38,16 @@ export class SupplierCreateComponent extends Base implements OnInit, OnDestroy {
   }
   
   protected buildForm(supplier: Supplier, disable: boolean = false): void {
-    this.formGeneratorService.build(of(FORM), of(LAYOUT)).pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((data: any) => {
-      this.formGroup = data.formGroup;
-      this.formModel = data.formModel;
-      this.formLayout = data.formLayout;
-      this.formGroup.get('group').patchValue(supplier);
-      disable && this.formGroup.disable();
+    this.store.select('supplier', 'contacts').subscribe((contacts: any) => {
+      this.formGeneratorService.build(shema$(contacts), layout$()).pipe(
+        takeUntil(this.destroy$)
+      ).subscribe((data: any) => {
+        this.formGroup = data.formGroup;
+        this.formModel = data.formModel;
+        this.formLayout = data.formLayout;
+        this.formGroup.get('group').patchValue(supplier);
+        disable && this.formGroup.disable();
+      });
     });
   }
 

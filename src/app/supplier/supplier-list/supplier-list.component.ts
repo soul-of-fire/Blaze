@@ -34,7 +34,7 @@ export class SupplierListComponent extends Base implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.rows$ = this.store.select('suppliers').pipe(takeUntil(this.destroy$));
+    this.rows$ = this.store.select('supplier', 'suppliers').pipe(takeUntil(this.destroy$));
   }
   
   onSearch(options: any) {

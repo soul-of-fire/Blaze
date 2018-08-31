@@ -1,77 +1,84 @@
-export const FORM: Array<any> = [
-    {
-        "type": "group",
-        "id": "group",
-        "children": [
-            {
-                "type": "string",
-                "id": "name",
-                "label": "Name",
-                "validators": {
-                    "required": null
-                }
-            },
-            {
-                "type": "string",
-                "id": "address",
-                "label": "Address",
-                "validators": {
-                    "required": null
-                }
-            },
-            {
-                "type": "string",
-                "id": "phone",
-                "label": "Phone",
-                "validators": {
-                    "required": null
-                }
-            },
-            {
-                "type": "string",
-                "id": "fax",
-                "label": "Fax",
-                "validators": {
-                    "required": null
-                }
-            },
-            {
-                "type": "string",
-                "id": "email",
-                "label": "Email",
-                "validators": {
-                    "required": null
-                }
-            },
-            {
-                "type": "string",
-                "id": "contact",
-                "label": "Contact",
-                "validators": {
-                    "required": null
-                }
-            },
-            {
-                "type": "string",
-                "id": "priority",
-                "label": "Priority",
-                "validators": {
-                    "required": null
-                }
-            },
-            {
-                "type": "date",
-                "id": "created",
-                "label": "Created",
-                "validators": {
-                    "required": null
-                }
-            }
-        ]
-    }
-];
+import { of } from "rxjs";
 
-export const LAYOUT = {};
+export let shema$: (...args: any[]) => any = function (...args: any[]): any {
+    return of([
+        {
+            "type": "group",
+            "id": "group",
+            "children": [
+                {
+                    "type": "string",
+                    "id": "name",
+                    "label": "Name",
+                    "validators": {
+                        "required": null
+                    }
+                },
+                {
+                    "type": "string",
+                    "id": "address",
+                    "label": "Address",
+                    "validators": {
+                        "required": null
+                    }
+                },
+                {
+                    "type": "string",
+                    "id": "phone",
+                    "label": "Phone",
+                    "validators": {
+                        "required": null
+                    }
+                },
+                {
+                    "type": "string",
+                    "id": "fax",
+                    "label": "Fax",
+                    "validators": {
+                        "required": null
+                    }
+                },
+                {
+                    "type": "string",
+                    "id": "email",
+                    "label": "Email",
+                    "validators": {
+                        "required": null
+                    }
+                },
+                {
+                    "type": "select",
+                    "id": "contact",
+                    "label": "Contact",
+                    "dropdownData": args[0],
+                    "validators": {
+                        "required": null
+                    }
+                },
+                {
+                    "type": "string",
+                    "id": "priority",
+                    "label": "Priority",
+                    "validators": {
+                        "required": null
+                    }
+                },
+                {
+                    "type": "date",
+                    "id": "created",
+                    "label": "Created",
+                    "validators": {
+                        "required": null
+                    }
+                }
+            ]
+        }
+    ]);
+};
+
+export let layout$: (...args: any[]) => any = function (...args: any[]): any {
+    return of({});
+};
 
 // "test": {
 //     "element": {

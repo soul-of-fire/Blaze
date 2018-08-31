@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 
-import { FORM, LAYOUT } from 'src/app/supplier/shared/schema';
 import { Supplier } from 'src/app/supplier/shared/models/supplier';
 import { SupplierEditComponent } from 'src/app/supplier/supplier/supplier-edit.component';
 import { of } from 'rxjs';
