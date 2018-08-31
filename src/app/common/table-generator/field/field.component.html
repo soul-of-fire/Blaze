@@ -1,1 +1,2 @@
-<dynamic-ng-bootstrap-form [group]="formGroup" [model]="formModel"></dynamic-ng-bootstrap-form>
+<div (click)="!col.isPerse && sort()" class="pl-2">{{col.label}}</div>
+<dynamic-ng-bootstrap-form [group]="formGroup" [model]="formModel" *ngIf="!col.isPerse"></dynamic-ng-bootstrap-form>

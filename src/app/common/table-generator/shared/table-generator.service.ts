@@ -38,12 +38,11 @@ export class TableGeneratorService {
     if(options && options.params) {
       page.offset = Number(options.params.get('page')) - 1;
       options.params.keys()
-        .filter((key) => key != 'page' && key != 'per_page' && key != 'order_type' && key != 'order_field')
-        .forEach(key => {
-          let value = instanceOfDateModel(searchForm.get(key).value) ? 
-            this.stringToDate(options.params.get(key)) : options.params.get(key);
-          searchForm.get(key).setValue(value, {emitEvent: false});
-        });
+      .filter((key) => key != 'page' && key != 'per_page' && key != 'order_type' && key != 'order_field')
+      .forEach(key => {
+        let value = instanceOfDateModel(searchForm.get(key).value) ? this.stringToDate(options.params.get(key)) : options.params.get(key);
+        searchForm.get(key).setValue(value, {emitEvent: false});
+      });
     }
   }
 

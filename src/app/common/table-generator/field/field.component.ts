@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { DynamicFormControlModel, DynamicInputModel, DynamicFormService, DynamicDatePickerModel } from '@ng-dynamic-forms/core';
-import { Factory } from './shared/factory/factory';
+import { DynamicFormControlModel } from '@ng-dynamic-forms/core';
+import { FormGeneratorService } from 'src/app/common/form-generator/shared/form-generator.service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-field',
@@ -11,12 +12,16 @@ import { Factory } from './shared/factory/factory';
 export class FieldComponent implements OnInit {
   @Input() col: any;
   @Input() formGroup: FormGroup;
+  @Input() sort: any;
 
   formModel: DynamicFormControlModel[];
 
-  constructor(private formService: DynamicFormService) { }
+  constructor(protected formGeneratorService: FormGeneratorService) { }
 
   ngOnInit() {
-    this.formModel = new Array(Factory.createField(this.col));
+    const field = [Object.assign({}, this.col)].map(field => {field.label = ''; return field});
+    this.formGeneratorService.build(of(field), of({})).subscribe((data: any) => {
+      this.formModel = data.formModel;
+    });
   }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Input, Output, ViewChild, EventEmitter, C
 import { Store } from '@ngrx/store';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { Base } from 'src/app/root/shared/common/base';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
@@ -45,11 +45,9 @@ export class TableGeneratorComponent extends Base implements OnInit, OnDestroy, 
 
   ngOnInit() {
     this.page.pageSize = this.pageSize || 5;
-
     this.columns = this.config;
 
     this.searchForm = this.formBuilder.group(this.initSearchForm());
-
     this.searchForm.valueChanges.pipe(
       debounceTime(300),
       distinctUntilChanged(),
@@ -71,7 +69,7 @@ export class TableGeneratorComponent extends Base implements OnInit, OnDestroy, 
 
   private initSearchForm() {
     return this.config.reduce((acc, cur) => {
-      acc[cur.name] = '';
+      acc[cur.id] = '';
       return acc;
     }, {})
   }

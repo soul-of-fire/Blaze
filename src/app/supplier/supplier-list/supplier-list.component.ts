@@ -16,15 +16,15 @@ import { Search, Remove } from 'src/app/supplier/shared/store/supplier-store';
 export class SupplierListComponent extends Base implements OnInit, OnDestroy {
   rows$: Observable<any>;
   config = [
-    {name: 'id', type: 'string'},
-    {name: 'name', type: 'select', dropdownData: [{label: 'All', value: ''}, {label: 'Kamara', value: 'Kamara'}, {label: 'Name', value: 'Name'}]},
-    {name: 'address', type: 'string'},
-    {name: 'phone', type: 'string'},
-    {name: 'email', type: 'string'},
-    {name: 'contact', type: 'string'},
-    {name: 'priority', type: 'number'},
-    {name: 'created', type: 'date'},
-    {name: 'site', isPerse: true},
+    {id: 'id', label: 'ID', type: 'string'},
+    {id: 'name', label: 'Name', type: 'select', dropdownData: [{label: 'All', value: ''}, {label: 'Kamara', value: 'Kamara'}, {label: 'Name', value: 'Name'}]},
+    {id: 'address', label: 'Address', type: 'string'},
+    {id: 'phone', label: 'Phone', type: 'string'},
+    {id: 'email', label: 'Email', type: 'string'},
+    {id: 'contact', label: 'Contact', type: 'string'},
+    {id: 'priority', label: 'Priority', type: 'number'},
+    {id: 'created', label: 'Created', type: 'date'},
+    {id: 'site', label: 'Site', isPerse: true},
   ];
   
   @ViewChild('cell') cell;
